@@ -15,5 +15,8 @@ public class Test {
 
         System.out.println(customer.getInfo());
 
+        TravelOffice office = new TravelOffice();
+        office.addCustomer(customer);
+
     }
 }
