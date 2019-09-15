@@ -13,10 +13,30 @@ public class Test {
 
         customer.assignTrip(trip);
 
-        System.out.println(customer.getInfo());
+//        System.out.println(customer.getInfo());
 
         TravelOffice office = new TravelOffice();
         office.addCustomer(customer);
+
+        Customer c2 = new Customer("Bożydar");
+        c2.setAddress(new Address("Matejki", "Kraków", "30-008"));
+        c2.assignTrip(new Trip(
+                new Date(2020, 2, 1),
+                new Date(2020, 2, 14),
+                "Radom"
+        ));
+        office.addCustomer(c2);
+
+        Customer c3 = new Customer("Brajanusz");
+        c3.setAddress(new Address("Rzeźnicza", "Kraków", "30-123"));
+        c3.assignTrip(new Trip(
+                new Date(2019, 12, 24),
+                new Date(2020, 1, 6),
+                "Sosnowiec"
+        ));
+        office.addCustomer(c3);
+
+        System.out.println(office.getInfo());
 
     }
 }

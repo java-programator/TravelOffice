@@ -23,4 +23,17 @@ public class TravelOffice {
         customers[customersCounter] = c;
         customersCounter++;
     }
+
+    public int getCustomersCount() {
+        return customersCounter;
+    }
+
+    public String getInfo() {
+        String result = "";
+        for (int i = 0; i < customersCounter; i++) {
+            result += customers[i].getInfo() + System.lineSeparator();
+        }
+        return result;
+    }
+
 }
