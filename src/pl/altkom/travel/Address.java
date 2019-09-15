@@ -1,9 +1,9 @@
 package pl.altkom.travel;
 
 public class Address {
-    String street;
-    String city;
-    String zip;
+    private String street;
+    private String city;
+    private String zip;
 
     public Address(String street, String city, String zip) {
         this.street = street;
@@ -13,5 +13,17 @@ public class Address {
 
     public String getInfo() {
         return street + ", " + zip + " " + city;
+    }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public String getZip() {
+        return zip;
     }
 }

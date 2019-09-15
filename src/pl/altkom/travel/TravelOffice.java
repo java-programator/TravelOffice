@@ -1,9 +1,9 @@
 package pl.altkom.travel;
 
 public class TravelOffice {
-    Customer customers[];
-    int customersCounter;
-    int maxSize;
+    private Customer customers[];
+    private int customersCounter;
+    private int maxSize;
 
     public TravelOffice() {
         maxSize = 2;

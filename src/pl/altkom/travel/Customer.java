@@ -1,9 +1,9 @@
 package pl.altkom.travel;
 
 public class Customer {
-    String name;
-    Address address;
-    Trip trip;
+    private String name;
+    private Address address;
+    private Trip trip;
 
     public Customer(String name) {
         this.name = name;
@@ -22,5 +22,17 @@ public class Customer {
                 name,
                 address.getInfo(),
                 trip.getInfo());
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public Trip getTrip() {
+        return trip;
     }
 }
