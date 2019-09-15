@@ -1,11 +1,11 @@
 package pl.altkom.travel;
 
 public class Date {
-    public static int counter = 0;
+    private static int counter = 0;
 
-    public int year;
-    public int month;
-    public int day;
+    private int year;
+    private int month;
+    private int day;
 
     public Date(int y, int m, int d) {
         year = y;
@@ -26,7 +26,7 @@ public class Date {
         return counter;
     }
 
-    public String getInfo() {
+    public String toString() {
         return String.format("%d-%d-%d", year, month, day);
     }
 

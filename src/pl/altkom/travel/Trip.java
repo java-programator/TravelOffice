@@ -1,20 +1,32 @@
 package pl.altkom.travel;
 
 public class Trip {
-    Date start;
-    Date end;
-    String destination;
+    private Date start;
+    private Date end;
+    private String destination;
+    private double price;
 
-    public Trip(Date start, Date end, String destination) {
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public Trip(Date start, Date end, String destination, double price) {
         this.start = start;
         this.end = end;
         this.destination = destination;
+        this.price = price;
     }
 
-    public String getInfo() {
-        return String.format("Wycieczka do %s, od %s do %s",
+    @Override
+    public String toString() {
+        return String.format("Wycieczka do %s, od %s do %s, kosztuje %s",
                 destination,
-                start.getInfo(),
-                end.getInfo());
+                start.toString(),
+                end.toString(),
+                getPrice());
     }
 }
