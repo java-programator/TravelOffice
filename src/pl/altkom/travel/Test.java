@@ -40,7 +40,10 @@ public class Test {
         ));
         office.addCustomer(c3);
 
-        System.out.println(office.toString());
-
+        System.out.println(office);
+//        System.out.println(office.toString());
+        final Date finalDate = new Date(2019, 10, 1);
+//        finalDate = new Date(2019, 11, 11);
+        finalDate.setDay(2);
     }
 }

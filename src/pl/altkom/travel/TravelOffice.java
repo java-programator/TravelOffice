@@ -1,5 +1,8 @@
 package pl.altkom.travel;
 
+import java.util.Arrays;
+import java.util.Objects;
+
 public class TravelOffice {
     private Customer customers[];
     private int customersCounter;
@@ -28,12 +31,38 @@ public class TravelOffice {
         return customersCounter;
     }
 
+//    public String toString() {
+//        String result = "";
+//        for (int i = 0; i < customersCounter; i++) {
+//            result += customers[i].toString() + System.lineSeparator();
+//        }
+//        return result;
+//    }
+
+
+    @Override
     public String toString() {
-        String result = "";
-        for (int i = 0; i < customersCounter; i++) {
-            result += customers[i].toString() + System.lineSeparator();
-        }
-        return result;
+        return "TravelOffice{" +
+                "customers=" + Arrays.toString(customers) +
+                ", customersCounter=" + customersCounter +
+                ", maxSize=" + maxSize +
+                '}';
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        TravelOffice office = (TravelOffice) o;
+        return customersCounter == office.customersCounter &&
+                maxSize == office.maxSize &&
+                Arrays.equals(customers, office.customers);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = Objects.hash(customersCounter, maxSize);
+        result = 31 * result + Arrays.hashCode(customers);
+        return result;
+    }
 }
