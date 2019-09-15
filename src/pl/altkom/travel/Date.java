@@ -26,7 +26,7 @@ public class Date {
         return counter;
     }
 
-    public String getInfo() {
+    public String toString() {
         return String.format("%d-%d-%d", year, month, day);
     }
 

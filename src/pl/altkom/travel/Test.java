@@ -9,7 +9,7 @@ public class Test {
 
         Date start = new Date(2019, 8, 15);
         Date end = new Date(2019, 8, 31);
-        Trip trip = new Trip(start, end, "Zakopane");
+        Trip trip = new DomesticTrip(start, end, "Zakopane", 1000, 200);
 
         customer.assignTrip(trip);
 
@@ -20,23 +20,27 @@ public class Test {
 
         Customer c2 = new Customer("Bożydar");
         c2.setAddress(new Address("Matejki", "Kraków", "30-008"));
-        c2.assignTrip(new Trip(
+        c2.assignTrip(new AbroadTrip(
                 new Date(2020, 2, 1),
                 new Date(2020, 2, 14),
-                "Radom"
+                "Radom",
+                200,
+                300
         ));
         office.addCustomer(c2);
 
         Customer c3 = new Customer("Brajanusz");
         c3.setAddress(new Address("Rzeźnicza", "Kraków", "30-123"));
-        c3.assignTrip(new Trip(
+        c3.assignTrip(new AbroadTrip(
                 new Date(2019, 12, 24),
                 new Date(2020, 1, 6),
-                "Sosnowiec"
+                "Sosnowiec",
+                400,
+                100
         ));
         office.addCustomer(c3);
 
-        System.out.println(office.getInfo());
+        System.out.println(office.toString());
 
     }
 }

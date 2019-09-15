@@ -11,7 +11,7 @@ public class Address {
         this.zip = zip;
     }
 
-    public String getInfo() {
+    public String toString() {
         return street + ", " + zip + " " + city;
     }
 

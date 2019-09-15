@@ -28,10 +28,10 @@ public class TravelOffice {
         return customersCounter;
     }
 
-    public String getInfo() {
+    public String toString() {
         String result = "";
         for (int i = 0; i < customersCounter; i++) {
-            result += customers[i].getInfo() + System.lineSeparator();
+            result += customers[i].toString() + System.lineSeparator();
         }
         return result;
     }

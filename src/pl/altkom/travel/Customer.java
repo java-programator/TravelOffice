@@ -17,11 +17,11 @@ public class Customer {
         trip = t;
     }
 
-    public String getInfo() {
+    public String toString() {
         return String.format("Klient: %s spod adresu %s jedzie na %s",
                 name,
-                address.getInfo(),
-                trip.getInfo());
+                address.toString(),
+                trip.toString());
     }
 
     public String getName() {
