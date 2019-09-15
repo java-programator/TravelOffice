@@ -38,33 +38,43 @@ public class TravelOffice {
             }
             customersArray = newCustomersArray;
         }
-
         customersArray[customerCounter] = c;
         customerCounter++;
-
     }
 
     public int getCustomerCount(){
         return customerCounter;
     }
 
-
+    public String getInfo(){
+        String result = "";
+        for(int i=0; i<customerCounter; i++){
+            result += customersArray[i].getInfo();
+        }
+        return result;
+    }
 
     public static void main(String[] args) {
-        Customer customer = new Customer("Paweł");
+        TravelOffice office = new TravelOffice();
 
+        Customer c1 = new Customer("Paweł");
         Address addres = new Address("Os. Strusia", "Kraków", "31-900");
-        customer.setAddress(addres);
-
+        c1.setAddress(addres);
         Date start = new Date(2019, 8, 15);
         Date end = new Date(2019, 8, 31);
         Trip trip = new Trip(start, end, "Zakopane");
+        c1.assignTrip(trip);
+        office.addCustomer(c1);
 
-        customer.assignTrip(trip);
+        Customer c2 = new Customer("Bozydar");
+        c2.setAddress(new Address("Matejki", "Kraków", "30-008"));
+        c2.assignTrip(new Trip(
+                new Date(2020, 2, 1),
+                new Date(2020, 2, 14),
+                "Radom"));
+        office.addCustomer(c2);
 
-        System.out.println(customer.getInfo());
-
-        Customer[] customerArray = new Customer[2];
+        System.out.println(office.getInfo());
 
     }
 }
