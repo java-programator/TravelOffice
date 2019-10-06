@@ -1,34 +1,24 @@
 package pl.altkom.travel;
 
-import java.util.Arrays;
-import java.util.Objects;
+import java.util.*;
 
 public class TravelOffice {
-    private Customer customers[];
+    private Set<Customer> customers;
     private int customersCounter;
     private int maxSize;
+    private Map<String, Trip> trips;
 
     public TravelOffice() {
-        maxSize = 2;
-        customers = new Customer[maxSize];
-        customersCounter = 0;
+        customers = new HashSet<>();
+        trips = new HashMap<>();
     }
 
     public void addCustomer(Customer c) {
-        if (customersCounter >= maxSize) {
-            maxSize *= 2;
-            Customer newCustomers[] = new Customer[maxSize];
-            for (int i = 0; i < customers.length; i++) {
-                newCustomers[i] = customers[i];
-            }
-            customers = newCustomers;
-        }
-        customers[customersCounter] = c;
-        customersCounter++;
+        customers.add(c);
     }
 
     public int getCustomersCount() {
-        return customersCounter;
+        return customers.size();
     }
 
 //    public String toString() {
@@ -52,17 +42,72 @@ public class TravelOffice {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        TravelOffice office = (TravelOffice) o;
-        return customersCounter == office.customersCounter &&
-                maxSize == office.maxSize &&
-                Arrays.equals(customers, office.customers);
+        if (!(o instanceof TravelOffice)) return false;
+        TravelOffice that = (TravelOffice) o;
+        return customers.equals(that.customers);
     }
 
     @Override
     public int hashCode() {
-        int result = Objects.hash(customersCounter, maxSize);
-        result = 31 * result + Arrays.hashCode(customers);
-        return result;
+        return Objects.hash(customers);
     }
+
+    public void addTrip(String s, Trip t){
+        trips.put(s, t);
+    }
+
+    public boolean removeTrip(String id){
+        if (trips.containsKey(id)){
+            trips.remove(id);
+            return true;
+        }
+        return false;
+    }
+
+    public Customer findCustomerByName(String name){
+        for (Customer c : customers){
+            if (c.getName().equals(name)){
+                return c;
+            }
+        }
+        return null;
+    }
+
+    public boolean removeCustomer(Customer c) {
+        return customers.remove(c);
+    }
+
+    public Set<Customer> getCustomers() {
+        return customers;
+    }
+
+    public void setCustomers(Set<Customer> customers) {
+        this.customers = customers;
+    }
+
+    public int getCustomersCounter() {
+        return customersCounter;
+    }
+
+    public void setCustomersCounter(int customersCounter) {
+        this.customersCounter = customersCounter;
+    }
+
+    public int getMaxSize() {
+        return maxSize;
+    }
+
+    public void setMaxSize(int maxSize) {
+        this.maxSize = maxSize;
+    }
+
+    public Map<String, Trip> getTrips() {
+        return trips;
+    }
+
+    public void setTrips(Map<String, Trip> trips) {
+        this.trips = trips;
+    }
+
+
 }
