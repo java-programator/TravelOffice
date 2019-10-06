@@ -1,5 +1,7 @@
 package pl.altkom.travel;
 
+import java.util.Objects;
+
 public class AbroadTrip extends Trip {
     private double insurance;
 
@@ -15,5 +17,19 @@ public class AbroadTrip extends Trip {
     @Override
     public double getPrice() {
         return super.getPrice() + insurance;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof AbroadTrip)) return false;
+        if (!super.equals(o)) return false;
+        AbroadTrip that = (AbroadTrip) o;
+        return Double.compare(that.insurance, insurance) == 0;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), insurance);
     }
 }

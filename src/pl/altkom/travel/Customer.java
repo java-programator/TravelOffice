@@ -1,5 +1,7 @@
 package pl.altkom.travel;
 
+import java.util.Objects;
+
 public class Customer {
     private String name;
     private Address address;
@@ -34,5 +36,20 @@ public class Customer {
 
     public Trip getTrip() {
         return trip;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Customer)) return false;
+        Customer customer = (Customer) o;
+        return Objects.equals(name, customer.name) &&
+                Objects.equals(address, customer.address) &&
+                Objects.equals(trip, customer.trip);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, address, trip);
     }
 }

@@ -45,5 +45,18 @@ public class Test {
         final Date finalDate = new Date(2019, 10, 1);
 //        finalDate = new Date(2019, 11, 11);
         finalDate.setDay(2);
+
+        office.addTrip("Bahamy",
+                new AbroadTrip(
+                        new Date(2020, 1, 1),
+                        new Date(2020, 1, 15),
+                        "Bahamy",
+                        5000,
+                        500));
+        Customer customer1 = office.findCustomerByName("Paweł");
+        if (customer1 != null) {
+            office.removeCustomer(customer1);
+        }
+        office.removeTrip("Bahamy");
     }
 }

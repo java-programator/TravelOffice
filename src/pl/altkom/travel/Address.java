@@ -1,5 +1,7 @@
 package pl.altkom.travel;
 
+import java.util.Objects;
+
 public class Address {
     private String street;
     private String city;
@@ -25,5 +27,20 @@ public class Address {
 
     public String getZip() {
         return zip;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Address)) return false;
+        Address address = (Address) o;
+        return Objects.equals(street, address.street) &&
+                Objects.equals(city, address.city) &&
+                Objects.equals(zip, address.zip);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(street, city, zip);
     }
 }
