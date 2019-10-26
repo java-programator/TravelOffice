@@ -15,7 +15,7 @@ public class Test {
 
 //        System.out.println(customer.getInfo());
 
-        TravelOffice office = new TravelOffice();
+        TravelOfficeSingleton office = TravelOfficeSingleton.getInstance();
         office.addCustomer(customer);
 
         Customer c2 = new Customer("Bożydar");
