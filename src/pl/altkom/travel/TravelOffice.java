@@ -3,10 +3,19 @@ package pl.altkom.travel;
 import java.util.*;
 
 public class TravelOffice {
+    private static TravelOffice instance = null;
+
+    public static TravelOffice getInstance() {
+        if (instance == null) {
+            instance = new TravelOffice();
+        }
+        return instance;
+    }
+
     private Set<Customer> customers;
     private Map<String, Trip> trips;
 
-    public TravelOffice() {
+    private TravelOffice() {
         customers = new HashSet<>();
         trips = new HashMap<>();
     }
