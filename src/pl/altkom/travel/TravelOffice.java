@@ -3,12 +3,19 @@ package pl.altkom.travel;
 import java.util.*;
 
 public class TravelOffice {
+    private static TravelOffice instance = null;
+
+    public static TravelOffice getInstance() {
+        if (instance == null) {
+            instance = new TravelOffice();
+        }
+        return instance;
+    }
+
     private Set<Customer> customers;
-    private int customersCounter;
-    private int maxSize;
     private Map<String, Trip> trips;
 
-    public TravelOffice() {
+    private TravelOffice() {
         customers = new HashSet<>();
         trips = new HashMap<>();
     }
@@ -21,30 +28,21 @@ public class TravelOffice {
         return customers.size();
     }
 
-//    public String toString() {
-//        String result = "";
-//        for (int i = 0; i < customersCounter; i++) {
-//            result += customers[i].toString() + System.lineSeparator();
-//        }
-//        return result;
-//    }
-
-
-    @Override
     public String toString() {
-        return "TravelOffice{" +
-                "customers=" + Arrays.toString(customers) +
-                ", customersCounter=" + customersCounter +
-                ", maxSize=" + maxSize +
-                '}';
+        String result = "";
+        for (Customer c : customers) {
+            result += c.toString() + System.lineSeparator();
+        }
+        return result;
     }
+
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof TravelOffice)) return false;
         TravelOffice that = (TravelOffice) o;
-        return customers.equals(that.customers);
+        return Objects.equals(customers, that.customers);
     }
 
     @Override
@@ -52,21 +50,22 @@ public class TravelOffice {
         return Objects.hash(customers);
     }
 
-    public void addTrip(String s, Trip t){
-        trips.put(s, t);
+    public void addTrip(String id, Trip trip) {
+        trips.put(id, trip);
     }
 
-    public boolean removeTrip(String id){
-        if (trips.containsKey(id)){
+    public boolean removeTrip(String id) {
+        if (trips.containsKey(id)) {
             trips.remove(id);
             return true;
+        } else {
+            return false;
         }
-        return false;
     }
 
-    public Customer findCustomerByName(String name){
-        for (Customer c : customers){
-            if (c.getName().equals(name)){
+    public Customer findCustomerByName(String name) {
+        for (Customer c : customers) {
+            if (c.getName().equals(name)) {
                 return c;
             }
         }
@@ -81,33 +80,7 @@ public class TravelOffice {
         return customers;
     }
 
-    public void setCustomers(Set<Customer> customers) {
-        this.customers = customers;
-    }
-
-    public int getCustomersCounter() {
-        return customersCounter;
-    }
-
-    public void setCustomersCounter(int customersCounter) {
-        this.customersCounter = customersCounter;
-    }
-
-    public int getMaxSize() {
-        return maxSize;
-    }
-
-    public void setMaxSize(int maxSize) {
-        this.maxSize = maxSize;
-    }
-
     public Map<String, Trip> getTrips() {
         return trips;
     }
-
-    public void setTrips(Map<String, Trip> trips) {
-        this.trips = trips;
-    }
-
-
 }
