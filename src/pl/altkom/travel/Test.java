@@ -1,5 +1,8 @@
 package pl.altkom.travel;
 
+import pl.altkom.travel.exceptions.NoSuchCustomerException;
+import pl.altkom.travel.exceptions.NoSuchTripException;
+
 public class Test {
     public static void main(String[] args) {
         Customer customer = new Customer("Paweł");
@@ -53,10 +56,20 @@ public class Test {
                         "Bahamy",
                         5000,
                         500));
-        Customer customer1 = office.findCustomerByName("Paweł");
-        if (customer1 != null) {
+
+        Customer customer1;
+
+        try {
+            customer1 = office.findCustomerByName("Paweł");
             office.removeCustomer(customer1);
+        } catch (NoSuchCustomerException e) {
+            e.printStackTrace();
         }
-        office.removeTrip("Bahamy");
+
+        try {
+            office.removeTrip("Bahamy");
+        } catch (NoSuchTripException e) {
+            e.printStackTrace();
+        }
     }
 }

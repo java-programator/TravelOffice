@@ -1,5 +1,8 @@
 package pl.altkom.travel;
 
+import pl.altkom.travel.exceptions.NoSuchCustomerException;
+import pl.altkom.travel.exceptions.NoSuchTripException;
+
 import java.util.*;
 
 public class TravelOffice {
@@ -54,26 +57,27 @@ public class TravelOffice {
         trips.put(id, trip);
     }
 
-    public boolean removeTrip(String id) {
+    public void removeTrip(String id) throws NoSuchTripException {
         if (trips.containsKey(id)) {
             trips.remove(id);
-            return true;
         } else {
-            return false;
+            throw new NoSuchTripException("Trip with id: '" + id + "' is not present in database");
         }
     }
 
-    public Customer findCustomerByName(String name) {
+    public Customer findCustomerByName(String name) throws NoSuchCustomerException {
         for (Customer c : customers) {
             if (c.getName().equals(name)) {
                 return c;
             }
         }
-        return null;
+        throw new NoSuchCustomerException("Customer '" + name + "' is not present in database");
     }
 
-    public boolean removeCustomer(Customer c) {
-        return customers.remove(c);
+    public void removeCustomer(Customer c) throws NoSuchCustomerException {
+        if (!customers.remove(c)) {
+            throw new NoSuchCustomerException(c.toString() + " cannot be removed");
+        }
     }
 
     public Set<Customer> getCustomers() {
