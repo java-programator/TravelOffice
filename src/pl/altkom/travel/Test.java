@@ -53,10 +53,21 @@ public class Test {
                         "Bahamy",
                         5000,
                         500));
-        Customer customer1 = office.findCustomerByName("Paweł");
-        if (customer1 != null) {
+
+        Customer customer1;
+
+        try {
+            customer1 = office.findCustomerByName("Kasia");
             office.removeCustomer(customer1);
+        } catch (NoSuchCustomerException e) {
+            e.printStackTrace();
         }
-        office.removeTrip("Bahamy");
+
+
+        try {
+            office.removeTrip("Kostaryka");
+        } catch (NoSuchTripException e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -54,26 +54,27 @@ public class TravelOffice {
         trips.put(id, trip);
     }
 
-    public boolean removeTrip(String id) {
+    public void removeTrip(String id) throws NoSuchTripException {
         if (trips.containsKey(id)) {
             trips.remove(id);
-            return true;
-        } else {
-            return false;
         }
+        throw new NoSuchTripException("Taka wycieczka nie istnieje!");
     }
 
-    public Customer findCustomerByName(String name) {
-        for (Customer c : customers) {
+    public Customer findCustomerByName(String name) throws NoSuchCustomerException {
+        for (Customer c : customers)
+        {
             if (c.getName().equals(name)) {
                 return c;
             }
         }
-        return null;
+        throw new NoSuchCustomerException("Takiego klienta nie ma w bazie danych.");
     }
 
-    public boolean removeCustomer(Customer c) {
-        return customers.remove(c);
+    public void removeCustomer(Customer c) throws NoSuchCustomerException {
+        if (!customers.remove(c)) {
+            throw new NoSuchCustomerException("Taki klient nie istnieje!");
+        }
     }
 
     public Set<Customer> getCustomers() {
